@@ -1,248 +1,399 @@
 #include <iostream>
 #include <string>
-
+#include <vector>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 struct player {
     string playerClass;
-
     int maxHP;
     int hp;
-
     int maxMana;
     int mana;
-
     int gold;
-
     int level;
     int xp;
-
     int attack;
 };
 struct Enemy {
     string name;
-
     int hp;
     int maxHP;
-
     int attack;
-
     int xpReward;
     int goldReward;
- };
+};
+vector<Enemy> enemies = {
 
+    {"Goblin", 12, 12, 3, 6, 4},
+    {"Ork", 25, 25, 6, 18, 10},
+    {"Bandita", 18, 18, 5, 10, 6},
+    {"Zombie", 16, 16, 3, 9, 5},
+    {"Troll", 35, 35, 7, 25, 20},
+    {"Duch", 20, 20, 4, 12, 8},
+    {"Pavouk", 14, 14, 4, 8, 5},
+    {"Demon", 40, 40, 8, 30, 25},
+    {"Rytir", 30, 30, 6, 20, 15},
+
+    {"Vlcek", 10, 10, 2, 5, 3},
+    {"Skret Elite", 22, 22, 5, 14, 8},
+    {"Bandit Leader", 28, 28, 6, 18, 12},
+    {"Undead Knight", 32, 32, 7, 22, 15},
+    {"Forest Beast", 26, 26, 6, 16, 10},
+    {"Cave Bat", 15, 15, 3, 8, 5},
+    {"Dark Mage", 38, 38, 8, 28, 20},
+    {"Golem", 45, 45, 9, 35, 25},
+    {"Assassin", 24, 24, 7, 18, 12},
+    {"Hell Hound", 30, 30, 7, 20, 15},
+    {"CHRONOBOT", 40, 40, 6, 50, 50}
+};
 int main() {
     player p;
     int volba;
 
-         cout << "Vitej ve svete dobrodruzstvi zacni tim ze si vyber sveho statecneho hrdinu:\n";
-    cout << "1 - Crusader\n";
-    cout << "2 - Mage\n";
-     cout << "3 - Hunter\n";
-    cout << "4 - Warlock\n";
+    cout << "Vitej ve svete dobrodruzstvi:\n";
+    cout << "1 - Crusader\n2 - Mage\n3 - Hunter\n4 - Warlock\n";
     cin >> volba;
 
- if(volba == 1) {
-    cout << "Crusader zajimava volba doufam ze te bude provazet krestanska vira!!" << endl;
-    p.playerClass = "Crusader";
-
-    p.maxHP = 12;
-    p.hp = 12;
-
-    p.maxMana = 3;
-    p.mana = 3;
-
-    p.attack = 4;
-
-    p.gold = 10;
-    p.level = 1;
-    p.xp = 0;
-}
-else if(volba == 2) {
-    cout << "Mage zajimava volba doufam ze te bude provazet kouzelna sila!!" << endl;
-    p.playerClass = "Mage";
-
-    p.maxHP = 6;
-    p.hp = 6;
-
-    p.maxMana = 10;
-    p.mana = 10;
-
-    p.attack = 2;
-
-    p.gold = 10;
-    p.level = 1;
-    p.xp = 0;
-}
+    if (volba == 1) {
+        p = {"Crusader",12,12,3,3,10,1,0,4};
+    }
+    else if (volba == 2) {
+        p = {"Mage",6,6,10,10,10,1,0,2};
+    }
     else if (volba == 3) {
-        cout << "Hunter dobra volba doufam ze te bude presna strela!!" << endl;
-        p.playerClass = "Hunter";
-
-        p.maxHP = 8;
-        p.hp = 8;
-
-        p.maxMana = 6;
-        p.mana = 6;
-
-        p.attack = 3;
-
-        p.gold = 10;
-        p.level = 1;
-        p.xp = 0;
+        p = {"Hunter",8,8,6,6,10,1,0,3};
     }
-        else if (volba == 4) {
-
-        p.playerClass = "Warlock pekna volba doufam ze ti bude dobre pomahat v ceste za dobrodruzstvim!!";
-
-        p.maxHP = 7;
-        p.hp = 7;
-
-        p.maxMana = 12;
-        p.mana = 12;
-
-        p.attack = 3;
-
-        p.gold = 10;
-        p.level = 1;
-        p.xp = 0;
-    }
-Enemy skret;
-
-skret.name = "Skret";
-
-skret.maxHP = 10;
-
-skret.hp = 10;
-
-skret.attack = 2;
-
-skret.xpReward = 5;
-
-skret.goldReward = 3;
-
-
-        cout << " ale pozor! narazil jsi na oskliveho skreta!" << endl;
-
-
-while (p.hp > 0 && skret.hp > 0) {
-
-    int action;
-
-    cout << "1 - Attack" << endl;
-    cout << "2 - Heal" << endl;
-
-    cin >> action;
-
-    if (action == 1) {
-
-        skret.hp = skret.hp - p.attack;
-
-        cout << "Uderil jsi skreta!" << endl;
-        cout << "Skret ma " << skret.hp << " HP." << endl;
+    else if (volba == 4) {
+        p = {"Warlock",7,7,12,12,10,1,0,3};
     }
 
-    if (skret.hp <= 0) {
+    Enemy skret;
+    skret.name = "Skret";
+    skret.maxHP = 10;
+    skret.hp = 10;
+    skret.attack = 2;
+    skret.xpReward = 5;
+    skret.goldReward = 3;
 
-        cout << "Skret byl porazen!" << endl;
-    p.xp = p.xp + skret.xpReward;
-    p.gold = p.gold + skret.goldReward;
+    cout << "Narazil jsi na skreta!\n";
 
-    cout << "Ziskal jsi XP a gold!" << endl;
+    while (p.hp > 0 && skret.hp > 0) {
 
-     if (p.xp >= 10) {
+        int akce;
+        cout << "1 - Attack\n2 - Heal\n";
+        cin >> akce;
 
-        p.level = p.level + 1;
+        if (akce == 1) {
+            skret.hp -= p.attack;
+            cout << "Uderil jsi skreta!\n";
+        }
 
-        p.maxHP = p.maxHP + 5;
-        p.attack = p.attack + 1;
+        if (akce == 2) {
+            p.hp += 5;
+            if (p.hp > p.maxHP) p.hp = p.maxHP;
+            cout << "Vylecil ses!\n";
+        }
 
-        p.hp = p.maxHP;
+        if (skret.hp <= 0) break;
 
-        cout << "LEVEL UP!" << endl;
+        p.hp -= skret.attack;
+
+        cout << "Skret te uderil! HP: " << p.hp << "\n";
+
+        if (p.hp <= 0) {
+            cout << "Prohral jsi!\n";
+            return 0;
+        }
     }
 
-        break;
+    cout << "Skret byl porazen!\n";
+    p.xp += skret.xpReward;
+    p.gold += skret.goldReward;
+
+    cout << "Obchod...\n";
+    cout << "1 heal potion (3 gold)\n2 attack boost (10 gold)\n";
+
+    int shop;
+    cin >> shop;
+
+    if (shop == 1 && p.gold >= 3) {
+        p.gold -= 3;
+        p.hp += 5;
+        if (p.hp > p.maxHP) p.hp = p.maxHP;
     }
 
-    if (action == 2) {
-
-        p.hp = p.hp + 5;
-        if (p.hp > p.maxHP) {
-         p.hp = p.maxHP;
-    }
-        cout << "Vylecil ses!" << endl;
-        cout << "Mas " << p.hp << " HP." << endl;
+    if (shop == 2 && p.gold >= 10) {
+        p.gold -= 10;
+        p.attack += 1;
     }
 
-    p.hp = p.hp - skret.attack;
+    cout << "Kam se vydas?\n1 les\n2 jeskyne\n";
 
-    cout << "Skret te uderil!" << endl;
-    cout << "Mas " << p.hp << " HP." << endl;
+    int cestavolba;
+    cin >> cestavolba;
 
-    if (p.hp <= 0) {
+    if (cestavolba == 1) {
 
-        cout << "Prohral jsi!" << endl;
+        Enemy vlk;
+        vlk.name = "Vlk";
+        vlk.hp = 15;
+        vlk.attack = 3;
+        vlk.xpReward = 8;
+        vlk.goldReward = 5;
 
-        break;
-    }
-}
-cout << "Po ceste si potkal drevenej obchod v lese\n";
-    cout << "1 - Pujdes se dovnitr kouknout?\n";
-    cout << "2 - Nebo budes pokracovat?\n";
+        cout << "Narazil jsi na vlka!\n";
 
-int volba;
-cin >> volba;
+        while (p.hp > 0 && vlk.hp > 0) {
 
-if (volba == 1) {
+            int akce;
+            cout << "1 - Attack\n2 - Heal\n";
+            cin >> akce;
 
-    cout << "Vstoupil jsi do obchodu..." << endl;
-
-    cout << "Obchodnik ti nabizi:" << endl;
-    cout << "1 - Maly lektvar zivotu (3 gold)" << endl;
-    cout << "2 - Lektvar Alexanderske sily (10 gold)" << endl;
-
-        int shopVolba;
-             cin >> shopVolba;
-
-    if (shopVolba == 1) {
-
-        if (p.gold >= 3) {
-            p.gold = p.gold - 3;
-            p.hp = p.hp + 5;
-
-            if (p.hp > p.maxHP) {
-                p.hp = p.maxHP;
+            if (akce == 1) {
+                vlk.hp -= p.attack;
+                cout << "Uderil jsi vlka!\n";
             }
 
-            cout << "Koupil jsi healing potion!" << endl;
+            if (akce == 2) {
+                p.hp += 5;
+                if (p.hp > p.maxHP) p.hp = p.maxHP;
+            }
+
+            if (vlk.hp <= 0) break;
+
+            p.hp -= vlk.attack;
+            cout << "Vlk te kousl! HP: " << p.hp << "\n";
+
+            if (p.hp <= 0) {
+                cout << "Prohral jsi!\n";
+                return 0;
+            }
         }
-        else {
-            cout << "Nemas dost gold!" << endl;
-        }
+
+        cout << "Vlk byl porazen!\n";
     }
 
- if (shopVolba == 2) {
+    else if (cestavolba == 2) {
 
-        if (p.gold >= 10) {
-            p.gold = p.gold - 10;
-            p.attack = p.attack + 1;
+        Enemy kostlivec;
+        kostlivec.name = "Kostlivec";
+        kostlivec.hp = 20;
+        kostlivec.attack = 4;
+        kostlivec.xpReward = 12;
+        kostlivec.goldReward = 8;
 
-            cout << "Zlepsil jsi svuj utok!" << endl;
+        cout << "Narazil jsi na kostlivce!\n";
+
+        while (p.hp > 0 && kostlivec.hp > 0) {
+
+            int akce;
+            cout << "1 - Attack\n2 - Heal\n";
+            cin >> akce;
+
+            if (akce == 1) {
+                kostlivec.hp -= p.attack;
+                cout << "Uderil jsi kostlivce!\n";
+            }
+
+            if (akce == 2) {
+                p.hp += 5;
+                if (p.hp > p.maxHP) p.hp = p.maxHP;
+            }
+
+            if (kostlivec.hp <= 0) break;
+
+            p.hp -= kostlivec.attack;
+
+            cout << "Kostlivec te zasahl! HP: " << p.hp << "\n";
+
+            if (p.hp <= 0) {
+                cout << "Prohral jsi!\n";
+                return 0;
+            }
         }
-        else {
-            cout << "Nemas dost gold!" << endl;
+
+        cout << "Kostlivec byl porazen!\n";
+    }
+cout << "\nDorazil jsi do druhe vesnice.\n";
+cout << "1 - Odpocinout (+10 HP) za 5 gold\n";
+cout << "2 - Zvysit max HP (+5) za 10 gold\n";
+cout << "3 - Zvysit utok (+1) za 10 gold\n";
+cout << "4 - Pokracovat dal\n";
+
+int vesnice2;
+cin >> vesnice2;
+
+if (vesnice2 == 1) {
+    if (p.gold >= 5) {
+        p.gold -= 5;
+        p.hp += 10;
+
+        if (p.hp > p.maxHP) {
+            p.hp = p.maxHP;
         }
+
+        cout << "Odpocinul sis.\n";
     }
 }
 
+else if (vesnice2 == 2) {
+    if (p.gold >= 10) {
+        p.gold -= 10;
+        p.maxHP += 5;
+        p.hp = p.maxHP;
 
-else if (volba == 2) {
-
-    cout << "Pokracujes dal v ceste..." << endl;
-
+        cout << "Max HP zvyseno.\n";
+    }
 }
 
+else if (vesnice2 == 3) {
+    if (p.gold >= 10) {
+        p.gold -= 10;
+        p.attack += 1;
 
+        cout << "Utok zvysen.\n";
+    }
+}Enemy troll;
+troll.name = "Troll";
+troll.maxHP = 35;
+troll.hp = 35;
+troll.attack = 7;
+troll.xpReward = 25;
+troll.goldReward = 20;
+
+cout << "\nPred tebou se objevil MiniBoss Troll!\n";
+
+while (p.hp > 0 && troll.hp > 0) {
+
+    int akce;
+    cout << "1 - Attack\n";
+    cout << "2 - Heal\n";
+    cin >> akce;
+
+    if (akce == 1) {
+        troll.hp -= p.attack;
+        cout << "Zasahl jsi Trolla!\n";
+    }
+
+    if (akce == 2) {
+        p.hp += 5;
+
+        if (p.hp > p.maxHP) {
+            p.hp = p.maxHP;
+        }
+    }
+
+    if (troll.hp <= 0) {
+        cout << "Troll byl porazen!\n";
+
+        p.xp += troll.xpReward;
+        p.gold += troll.goldReward;
+
+        break;
+    }
+
+    p.hp -= troll.attack;
+
+    cout << "Troll te zasahl!\n";
+    cout << "Mas " << p.hp << " HP\n";
+   
+    if (p.hp <= 0) {
+    cout << "Prohral jsi!\n";
+    return 0;
+}
+}
+Enemy goblin1 = {"Goblin",12,12,3,6,4};
+Enemy goblin2 = {"Goblin",12,12,3,6,4};
+
+cout << "\nPrepadli te dva Goblini!\n";
+
+while (p.hp > 0 && (goblin1.hp > 0 || goblin2.hp > 0)) {
+
+    int cil;
+
+    cout << "Koho chces utocit?\n";
+    cout << "1 - Goblin 1\n";
+    cout << "2 - Goblin 2\n";
+    cin >> cil;
+
+    if (cil == 1 && goblin1.hp > 0) {
+        goblin1.hp -= p.attack;
+    }
+
+    if (cil == 2 && goblin2.hp > 0) {
+        goblin2.hp -= p.attack;
+    }
+
+    if (goblin1.hp > 0) {
+        p.hp -= goblin1.attack;
+    }
+
+    if (goblin2.hp > 0) {
+        p.hp -= goblin2.attack;
+    }
+
+    cout << "Mas " << p.hp << " HP\n";
+
+    if (p.hp <= 0) {
+        cout << "Prohral jsi!\n";
+        return 0;
+    }
+}
+
+cout << "Porazil jsi oba Gobliny!\n";
+
+
+Enemy demon;
+demon.name = "Demon";
+demon.maxHP = 40;
+demon.hp = 40;
+demon.attack = 8;
+demon.xpReward = 30;
+demon.goldReward = 25;
+
+cout << "\nPred tebou se objevil MiniBoss Demon!\n";
+
+while (p.hp > 0 && demon.hp > 0) {
+
+    int akce;
+    cout << "1 - Attack\n";
+    cout << "2 - Heal\n";
+    cin >> akce;
+
+    if (akce == 1) {
+        demon.hp -= p.attack;
+        cout << "Zasahl jsi Demona!\n";
+    }
+
+    if (akce == 2) {
+        p.hp += 5;
+
+        if (p.hp > p.maxHP) {
+            p.hp = p.maxHP;
+        }
+    }
+
+    if (demon.hp <= 0) {
+        cout << "Demon byl porazen!\n";
+
+        p.xp += demon.xpReward;
+        p.gold += demon.goldReward;
+
+        break;
+    }
+
+    p.hp -= demon.attack;
+
+    cout << "Demon te zasahl!\n";
+    cout << "Mas " << p.hp << " HP\n";
+
+    if (p.hp <= 0) {
+        cout << "Prohral jsi!\n";
+        return 0;
+    }
 }
     return 0;
+
 }
